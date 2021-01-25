@@ -17,14 +17,14 @@
 ### Association
 - has_many :items
 - has_many :comments
-- has_one :buy
+- has_many :buy
 
 
 ## itemsテーブル
 
 | Colum                  | Type       | Option                         |
 | ---------------------- | ---------- | ------------------------------ |
-| name                   | text       | null: false                    |
+| name                   | string       | null: false                    |
 | info                   | text       | null: false                    |
 | category_id            | integer    | null: false                    |
 | sales_status_id        | integer    | null: false                    |
