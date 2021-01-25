@@ -55,7 +55,7 @@
 
 
 
-# shipping_address
+# shipping_addresses
 
 | Colum         | Type     | Option      |
 | ------------- | -------- | ----------- |
