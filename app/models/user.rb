@@ -5,10 +5,11 @@ class User < ApplicationRecord
   with_options presence: true do
     validates :nickname
     validates :birthday
-    validates :last_name, format: { with: /\A[ぁ-んァ-ヶ一-龥]/ }
-      # message: Full-width characters
-    validates :first_name, format: { with: /\A[ぁ-んァ-ヶ一-龥]/ }
-      # message: Full-width characters
+  end
+
+  with_options presence: true, format: { with: /\A[ぁ-んァ-ン一-龥々]/ } do
+    validates :last_name
+    validates :first_name
   end
 
   with_options presence: true, format: { with: /\A[ァ-ヶー－]+\z/ } do
