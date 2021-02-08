@@ -11,7 +11,6 @@ class BuysController < ApplicationController
 
 
   def create
-    # binding.pry
     @buy_shipping = BuyShipping.new(buy_shipping_params)
     if @buy_shipping.valid?
       pay_item

@@ -14,9 +14,7 @@ function pay() {
       exp_year: `20${formData.get("buy_shipping[card_exp_year]")}`
     };
 
-    // console.log(token)
     Payjp.createToken(card, (status, response) => {
-      // debugger
       if (status == 200) {
         const token = response.id;
         const renderDom = document.getElementById("charge-form");
