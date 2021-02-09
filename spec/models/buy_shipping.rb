@@ -110,6 +110,18 @@ RSpec.describe BuyShipping, type: :model do
       @buy_shipping.valid?
       expect(@buy_shipping.errors.full_messages).to include("Phone number is invalid")
     end
+
+    it "user_idが空では登録できないこと" do
+      @buy_shipping.user_id = nil
+      @buy_shipping.valid?
+      expect(@buy_shipping.errors.full_messages).to include("User can't be blank")
+    end
+
+    it "item_idが空では登録できないこと" do
+      @buy_shipping.item_id = nil
+      @buy_shipping.valid?
+      expect(@buy_shipping.errors.full_messages).to include("Item can't be blank")
+    end
   end
 
 

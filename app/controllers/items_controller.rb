@@ -22,32 +22,27 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    if current_user.id != @item.user.id
+    if @item.buy != nil || current_user.id != @item.user.id  
       redirect_to root_path
-    else
-      redirect_to action: :index
     end
-
   end
 
   def update
-    if @item.update(item_params)
-      redirect_to action: :index
-    else
-      render :edit
-    end
+      if @item.update(item_params)
+        redirect_to action: :index
+      else
+        render :edit
+      end
   end
 
   def destroy
-    if current_user.id == @item.user.id
-      if @item.destroy
-        redirect_to action: :index
-      else
-        render :show
+      if @item.buy != nil || current_user.id == @item.user.id
+        if @item.destroy
+          redirect_to action: :index
+        else
+          redirect_to :show
+        end
       end
-    else
-      redirect_to action: :show
-    end
   end
 
 

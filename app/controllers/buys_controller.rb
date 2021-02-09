@@ -1,5 +1,5 @@
 class BuysController < ApplicationController
-  before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_buy, only: [:index, :create]
 
   def index
@@ -11,13 +11,16 @@ class BuysController < ApplicationController
 
 
   def create
-    @buy_shipping = BuyShipping.new(buy_shipping_params)
-    if @buy_shipping.valid?
-      pay_item
-      @buy_shipping.save
-      redirect_to root_path
-    else
-      render action: :index
+    if @item.buy != nil || current_user.id != @item.user.id
+      
+      @buy_shipping = BuyShipping.new(buy_shipping_params)
+      if @buy_shipping.valid?
+        pay_item
+        @buy_shipping.save
+        redirect_to root_path
+      else
+        render action: :index
+      end
     end
   end
 
