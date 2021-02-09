@@ -3,16 +3,11 @@ class BuysController < ApplicationController
   before_action :set_buy, only: [:index, :create]
 
   def index
-    if @item.buy != nil || current_user.id == @item.user.id
-      redirect_to root_path
-    end
     @buy_shipping = BuyShipping.new
   end
 
 
   def create
-    if @item.buy != nil || current_user.id != @item.user.id
-      
       @buy_shipping = BuyShipping.new(buy_shipping_params)
       if @buy_shipping.valid?
         pay_item
@@ -21,14 +16,15 @@ class BuysController < ApplicationController
       else
         render action: :index
       end
-    end
   end
 
   private
 
   def set_buy
     @item = Item.find(params[:item_id])
-    
+    if @item.buy != nil || current_user.id == @item.user.id
+      redirect_to root_path
+    end
   end
 
   def buy_shipping_params
